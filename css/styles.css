@@ -11020,6 +11020,10 @@ section.resume-section .resume-section-content {
   inset: auto !important;
 }
 
+.navbar-nav .dropdown-item {
+  white-space: normal;
+}
+
 .navbar-nav .dropdown-menu.show {
   max-height: 500px;
   opacity: 1;
