@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', event => {
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
     const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
+        document.querySelectorAll('#navbarResponsive .nav-link:not(.dropdown-toggle)')
     );
     responsiveNavItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
@@ -31,4 +31,44 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    // Handle dropdown items - highlight active and keep dropdown open
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            
+            // Remove active class from all dropdown items
+            dropdownItems.forEach(i => i.classList.remove('active'));
+            // Add active class to clicked item
+            item.classList.add('active');
+            
+            // Navigate to the section
+            const href = item.getAttribute('href');
+            if (href) {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Keep dropdown open
+            setTimeout(() => {
+                if (dropdownMenu && !dropdownMenu.classList.contains('show')) {
+                    dropdownToggle.click();
+                }
+            }, 100);
+        });
+    });
+    
+    // Prevent dropdown from closing when clicking inside it
+    if (dropdownMenu) {
+        dropdownMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+
 });
+
