@@ -10970,3 +10970,122 @@ section.resume-section .resume-section-content {
     padding-bottom: 5rem;
   }
 }
+
+/* Navbar Dropdown Animation */
+@keyframes dropdownSlideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+@keyframes dropdownSlideUp {
+  from {
+    max-height: 500px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+/* Navbar Dropdown Styles */
+.navbar-nav .nav-item.dropdown {
+  width: 100%;
+}
+
+.navbar-nav .dropdown-menu {
+  position: static !important;
+  float: none !important;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background-color: #a0826d;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  display: block !important;
+  visibility: visible !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+}
+
+.navbar-nav .dropdown-item {
+  white-space: normal;
+}
+
+.navbar-nav .dropdown-menu.show {
+  max-height: 500px;
+  opacity: 1;
+  animation: dropdownSlideDown 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.navbar-nav .dropdown-menu:not(.show) {
+  animation: dropdownSlideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.navbar-nav .dropdown-item {
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-item:focus {
+  color: #fff;
+  background-color: #8b6f5f;
+}
+
+.navbar-nav .dropdown-item.active {
+  color: #fff;
+  background-color: #8b6f5f;
+}
+
+.navbar-nav .dropdown-toggle::after {
+  display: none;
+}
+
+.navbar-nav .dropdown-toggle {
+  padding-right: 0;
+}
+
+.navbar-nav .dropdown-toggle::before {
+  content: '';
+  display: inline-block;
+  margin-left: 0;
+  vertical-align: 0.255em;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  transition: transform 0.6s ease-out;
+}
+
+.navbar-nav .dropdown-toggle[aria-expanded="true"]::before {
+  transform: rotate(180deg);
+}
+
+/* Fix for scrollspy highlighting with dropdown items */
+.navbar-nav .nav-link.active {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+
+
+
+
