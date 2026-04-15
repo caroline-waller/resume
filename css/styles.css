@@ -11085,7 +11085,78 @@ section.resume-section .resume-section-content {
   color: rgba(255, 255, 255, 1) !important;
 }
 
+/* PDF Portfolio Card Styling */
+.pdf-portfolio-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  padding: 60px 40px;
+  min-height: 450px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid rgba(128, 0, 0, 0.2);
+}
 
+.pdf-portfolio-card:hover {
+  box-shadow: 0 20px 70px rgba(128, 0, 0, 0.25);
+  transform: translateY(-8px);
+  border-color: rgba(128, 0, 0, 0.4);
+}
 
+.pdf-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
+.pdf-portfolio-card:hover .pdf-card-overlay {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.4) 100%);
+}
 
+.pdf-card-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.pdf-card-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  font-family: 'Saira Extra Condensed', sans-serif;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.pdf-card-cta {
+  font-size: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  font-style: normal;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.pdf-portfolio-card:hover .pdf-card-title {
+  color: #ffeb3b;
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.pdf-portfolio-card:hover .pdf-card-cta {
+  color: #ffeb3b;
+  transform: scale(1.05);
+}
