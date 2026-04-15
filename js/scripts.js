@@ -20,9 +20,12 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
+    const navbarCollapse = document.body.querySelector('#navbarResponsive');
     const responsiveNavItems = [].slice.call(
         document.querySelectorAll('#navbarResponsive .nav-link:not(.dropdown-toggle)')
     );
+    const bsCollapse = navbarCollapse ? new bootstrap.Collapse(navbarCollapse, { toggle: false }) : null;
+
     responsiveNavItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
             if (window.getComputedStyle(navbarToggler).display !== 'none') {
@@ -31,20 +34,30 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    // Handle dropdown items - highlight active and keep dropdown open
+    // Handle dropdown items - highlight active and close menus on mobile
     const dropdownItems = document.querySelectorAll('.dropdown-item');
     const dropdownToggle = document.querySelector('.dropdown-toggle');
     const dropdownMenu = document.querySelector('.dropdown-menu');
     
     dropdownItems.forEach(item => {
         item.addEventListener('click', (e) => {
-            e.stopPropagation();
-            
+            e.preventDefault();
+
             // Remove active class from all dropdown items
             dropdownItems.forEach(i => i.classList.remove('active'));
             // Add active class to clicked item
             item.classList.add('active');
-            
+
+            // Close the dropdown menu if open
+            if (dropdownMenu && dropdownMenu.classList.contains('show') && dropdownToggle) {
+                dropdownToggle.click();
+            }
+
+            // Collapse the responsive navbar when toggler is visible
+            if (window.getComputedStyle(navbarToggler).display !== 'none' && bsCollapse) {
+                bsCollapse.hide();
+            }
+
             // Navigate to the section
             const href = item.getAttribute('href');
             if (href) {
@@ -53,13 +66,6 @@ window.addEventListener('DOMContentLoaded', event => {
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-            
-            // Keep dropdown open
-            setTimeout(() => {
-                if (dropdownMenu && !dropdownMenu.classList.contains('show')) {
-                    dropdownToggle.click();
-                }
-            }, 100);
         });
     });
     
